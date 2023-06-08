@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost'
+axios.defaults.baseURL = 'http://api.eldin.me'
 axios.defaults.withCredentials = true
 
 createApp(App).use(router).use(store).mount('#app')
