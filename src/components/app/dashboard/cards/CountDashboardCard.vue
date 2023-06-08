@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-1/4 rounded-2xl flex flex-col justify-center items-center" :class="'bg-[#'+color+']'">
+  <div class="w-1/4 min-w-1/4 rounded-2xl flex flex-col justify-center items-center" :class="'bg-[#'+color+']'">
     <div class="flex flex-col justify-start items-start space-y-9 px-9">
       <div class="flex flex-col justify-start items-start space-y-2 2xl:space-y-6">
         <svg

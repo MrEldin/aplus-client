@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full py-6 2xl:px-12 flex items-center justify-center">
+    <section class="w-full h-[128px] flex items-center justify-center">
         <div class="flex items-center justify-between w-full h-full px-12">
             <div class="inline-flex flex-col items-start justify-center h-full">
                 <p class="text-2xl 2xl:text-3xl font-bold leading-relaxed text-gray-600">{{store.getters.name}}</p>

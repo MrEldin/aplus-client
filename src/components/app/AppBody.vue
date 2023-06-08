@@ -1,18 +1,20 @@
 <template>
     <section class="main-body h-screen bg-[#FFF6EF]">
         <Header />
-        <div class="w-full h-[400px] 2xl:h-[500px] flex px-12 pb-6 space-x-6">
-          <DocumentsWidget class="w-9/12 2xl:w-7/12">
-            <LineChart />
-          </DocumentsWidget>
-          <CountDashboardCard />
-          <CountDashboardCard class="hidden 2xl:flex"/>
-        </div>
-        <div class="w-full h-2/5 flex px-12 pb-6 space-x-6">
-          <DocumentsWidget class="w-full h-full">
-            <BarChart />
-          </DocumentsWidget>
-        </div>
+        <perfect-scrollbar>
+          <div class="w-full h-[350px] 2xl:h-[500px] flex px-12 pb-6 space-x-6">
+            <DocumentsWidget class="w-9/12 2xl:w-7/12">
+              <LineChart />
+            </DocumentsWidget>
+            <CountDashboardCard />
+            <CountDashboardCard class="hidden 2xl:flex"/>
+          </div>
+          <div class="w-full h-[350px] 2xl:h-[500px] flex px-12 pb-6 space-x-6">
+            <DocumentsWidget class="w-full h-full">
+              <BarChart />
+            </DocumentsWidget>
+          </div>
+        </perfect-scrollbar>
     </section>
 </template>
 
@@ -43,6 +45,10 @@
 </script>
 
 <style scoped>
+    .ps {
+      height: calc(100% - 128px);
+    }
+
     .main-body {
       width: calc(100% - 300px);
     }
