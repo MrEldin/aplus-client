@@ -1,6 +1,5 @@
 <template>
-    <div class="w-full flex">
-        <Sidebar />
+    <div class="flex app-total">
         <Mainbar />
         <AppBody />
     </div>
@@ -28,4 +27,7 @@
 </script>
 
 <style scoped>
+  .app-total {
+    width: calc(100% - 64px);
+  }
 </style>

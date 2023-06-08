@@ -1,12 +1,11 @@
 export const data = {
-    labels: ['Pon', 'Uto', 'Sre', 'Cet', 'Pet', 'Sub', 'Ned', 'Pon', 'Uto', 'Sre', 'Cet'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'],
     datasets: [
         {
             label: 'Data One',
-            data: [40, 39, 10, 40, 39, 80, 40, 20, 50, 40, 10],
-            fill: false,
-            borderColor: 'rgba(235,163,108,0.66)',
-            tension: 0.1
+            data: [40, 20, 10, 40, 39, 80, 40, 20, 50, 40, 10, 30],
+            backgroundColor: '#F0CF93',
+            borderRadius: 5,
         }
     ],
 }
@@ -28,8 +27,12 @@ export const options = {
                 display: false,
             },
             grid: {
-                display: true,
-                lineWidth: 1,
+                drawBorder: false,
+                display: false,
+                drawTicks: false,
+                lineWidth: 0,
+                drawOnChartArea: false,
+                offset: false,
             },
             ticks: {
                 padding: 20,

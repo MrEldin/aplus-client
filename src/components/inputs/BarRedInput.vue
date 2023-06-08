@@ -5,7 +5,7 @@
                 :value="modelValue"
                 :placeholder="placeholder"
                 @input="$emit('update:modelValue', $event.target.value)"
-                class="text-sm text-white font-light placeholder-white border-none focus:ring-gray-300 focus:border-gray-300 w-full bg-[#C99391] rounded-2xl"
+                class="text-xs text-white font-light placeholder-white border-none focus:ring-gray-300 focus:border-gray-300 w-full bg-[#C99391] rounded-2xl"
         >
         <p class="mt-2 text-sm text-red-600" v-if="error">{{error}}</p>
     </div>

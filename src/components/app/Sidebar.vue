@@ -1,5 +1,5 @@
 <template>
-    <section class="w-16 h-screen bg-[#3E546C] flex items-center justify-center">
+    <section class="w-16 sidebar h-screen bg-[#3E546C] flex items-center justify-center">
         <Navigation />
     </section>
 </template>
@@ -22,4 +22,7 @@
 </script>
 
 <style scoped>
+  .sidebar {
+    min-width: 64px;
+  }
 </style>

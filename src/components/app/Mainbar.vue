@@ -1,41 +1,49 @@
 <template>
-    <section class="w-[332px] h-screen bg-[#9B6765] flex-col items-start py-5 justify-center">
+    <section class="w-[300px] min-w-[300px] 2xl:min-w-[330px] h-screen bg-[#9B6765] flex-col items-start py-5 justify-center">
         <BarRedInput
                 placeholder="Search"
                 :error="errors.search ? errors.search[0] : false"
                 v-model="form.search"
-                class="w-full px-5"
+                class="w-full px-6"
         />
-        <BorderedTitle class="mt-5 py-5 border-t-2 border-b-2 border-yellow-600 border-opacity-20">
-            <img :src="scan" alt="Dashboard">
+        <BorderedTitle class="mt-6 py-6 border-t-2 border-b-2 border-yellow-600 border-opacity-20">
+            <img :src="scan" class="w-[20px] h-[20px]" alt="Dashboard">
         </BorderedTitle>
-
-        <div class="w-full flex items-center justify-center mt-5 mb-5">
-            <div class="inline-flex flex-col items-start justify-start px-2.5 py-6 bg-[#B17C7A] border rounded-2xl border-red-100 border-opacity-20">
-                <div class="flex flex-col space-y-8 items-center justify-start">
-                    <div class="flex flex-col space-y-1 items-start justify-center w-5/6">
-                        <p class="w-52 text-lg font-medium text-white">Zaklina Markovic</p>
-                        <p class="w-48 text-xs font-medium text-white text-opacity-50">Advokat Višeg Suda u Beogradu</p>
-                    </div>
-                    <div class="flex flex-col items-start justify-start px-9 py-3 bg-[#996563] border border-red-100 border-opacity-30 rounded-2xl">
-                        <div class="inline-flex space-x-8 items-center justify-center">
-                            <div class="inline-flex flex-col space-y-1 items-center justify-start">
-                                <p class="text-xs font-medium text-white text-opacity-50">Rokovnici</p>
-                                <p class="text-lg font-medium text-white">20</p>
-                            </div>
-                            <div class="inline-flex flex-col space-y-1 items-center justify-start">
-                                <p class="text-xs font-medium text-white text-opacity-50">Predmeti</p>
-                                <p class="text-lg font-medium text-white">14</p>
-                            </div>
-                            <div class="inline-flex flex-col space-y-1 items-center justify-start">
-                                <p class="text-xs font-medium text-white text-opacity-50">Tarifa</p>
-                                <p class="text-lg font-medium text-white">80</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <RightBounceContainer :visible="show">
+        <section class="w-full p-6">
+          <div class="inline-flex flex-col items-start justify-start bg-[#B17C7A] border rounded-2xl border-red-100 border-opacity-20 big-lines w-full">
+            <div class="w-full flex flex-col p-2 2xl:p-3 space-y-3 2xl:space-y-4 items-start justify-start">
+              <div class="flex flex-col p-2 space-y-1 items-start justify-center">
+                <p class="text-md 2xl:text-lg font-medium text-white">{{ store.getters.name }}</p>
+                <p class="text-[11px] 2xl:text-xs font-small text-white text-opacity-50">Advokat Višeg Suda u Beogradu</p>
+              </div>
+              <div class="w-full px-6 py-2 flex items-start justify-between bg-[#996563] border border-red-100 border-opacity-30 rounded-2xl">
+                  <div class="inline-flex flex-col items-center justify-start">
+                    <p class="text-[11px] 2xl:text-xs font-medium text-white text-opacity-50">Rokovnici</p>
+                    <p class="text-md 2xl:text-lg font-medium text-white">20</p>
+                  </div>
+                  <div class="inline-flex flex-col items-center justify-start">
+                    <p class="text-[11px] 2xl:text-xs font-medium text-white text-opacity-50">Predmeti</p>
+                    <p class="text-md 2xl:text-lg font-medium text-white">14</p>
+                  </div>
+                  <div class="inline-flex flex-col items-center justify-start">
+                    <p class="text-[11px] 2xl:text-xs font-medium text-white text-opacity-50">Tarifa</p>
+                    <p class="text-md 2xl:text-lg font-medium text-white">80</p>
+                  </div>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
+      </RightBounceContainer>
+      <div class="px-6">
+        <p class="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Licna statistika</p>
+        <SmallInfoCard />
+        <SmallInfoCard />
+        <SmallInfoCard />
+      </div>
+      <div class="px-6">
+        <AddInfoCard />
+      </div>
     </section>
 </template>
 
@@ -44,14 +52,21 @@
     import Navigation from './Navigation.vue'
     import BarRedInput from '../../components/inputs/BarRedInput.vue'
     import BorderedTitle from '../../components/titles/BorderedTitle.vue'
+    import RightBounceContainer from '../../components/common/RightBounceContainer.vue'
     import {reactive, ref} from 'vue'
     import scan from '../../assets/Iconly/Light-outline/Scan.svg'
+    import {onMounted} from 'vue'
+    import SmallInfoCard from "./dashboard/cards/SmallInfoCard.vue";
+    import AddInfoCard from "./dashboard/cards/AddInfoCard.vue";
 
     export default {
         components: {
+          AddInfoCard,
+          SmallInfoCard,
             Navigation,
             BarRedInput,
             BorderedTitle,
+            RightBounceContainer,
         },
         setup() {
             const store = useStore()
@@ -64,15 +79,71 @@
                 search: null
             })
 
+          const show = ref(false)
+          onMounted(() => {
+            show.value = true
+          })
+
 
             return {
                 form,
                 errors,
-                scan
+                scan,
+              show,
+              store
             }
         }
     }
 </script>
 
 <style scoped>
+.slide-enter-active {
+  animation: slide-in 0.5s;
+}
+.slide-leave-active {
+  animation: slide-out 0.8s;
+}
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-10%);
+  }
+  80% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-out {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5%);
+  }
+  40% {
+    transform: translateX(10%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+
+.big-lines {
+  background-image: url(../../assets/big-lines.svg);
+  background-size: 180%;
+  background-repeat: no-repeat;
+  background-position: -90px -103px;
+  transition: background-size 30ms ease-in;
+  -moz-transition: background-size 30ms ease-in;
+  -web-kit-transition: background-size 30ms ease-in;
+  overflow: visible;
+}
 </style>
